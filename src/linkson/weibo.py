@@ -1,6 +1,4 @@
-from pyquery import PyQuery as pq
 import httpx
-import re
 
 # uid 用户id
 # mblogid  "LDKtmjg78" web端的博文id
@@ -46,6 +44,7 @@ def parse_weibo_url(url, weibo_cookies=None):
                 long_content = expand_json['data']['longTextContent']
         content = long_content if long_content != None else detail_json['text_raw']
         return {
+            'success': True,
             'url': f'https://weibo.com/{uid}/{mblogid}',
             'murl': f'https://m.weibo.cn/{uid}/{mid}',
             'title': content.split('\n')[0],
@@ -56,7 +55,10 @@ def parse_weibo_url(url, weibo_cookies=None):
             'video_url': video_url
         }
     else:
-        return None
+        return {
+            'success': False,
+            'msg': '解析出错'
+        }
 
 if __name__ == '__main__':
     print(parse_weibo_url('https://weibo.com/6303705511/LC4ECDFJC'))
