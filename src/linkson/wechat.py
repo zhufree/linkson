@@ -6,7 +6,7 @@ def parse_wechat_url(url):
     head = list(doc('img').items())[1].attr('data-src')
     img = doc('img.rich_pages:first').attr('data-src')
     title = doc('#activity-name').text()
-    content = doc('#js_content').text().replace('\n\n\n', '\n').strip()[0:500]+'...'
+    content = doc('#js_content').text().replace('\n\n\n', '\n').strip()[0:800]+'...'
     return {
         'title': title,
         'author': author,

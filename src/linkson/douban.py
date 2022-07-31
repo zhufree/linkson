@@ -12,6 +12,7 @@ def parse_group_topic_url(url):
     for i in imgs:
         pics.append(i.attr('src'))
     return {
+        'success': True,
         'url': url,
         'title': doc('.article h1').text(),
         'content': doc('.topic-doc p').text(),
